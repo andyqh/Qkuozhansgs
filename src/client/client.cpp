@@ -1041,7 +1041,7 @@ void Client::killPlayer(const QString &player_name){
 
     player->loseAllSkills();
 
-    if(!Self->hasFlag("marshalling")){
+    if(!Self->hasFlag("marshalling") && !Self->hasSkill("baojie")){
         QString general_name = player->getGeneralName();
         QString last_word = Sanguosha->translate(QString("~%1").arg(general_name));
 

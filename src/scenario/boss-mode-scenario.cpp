@@ -266,7 +266,7 @@ public:
         dummy_skills << "chujia" << "xuwei" << "tuoqiao" << "shenli" << "midao"
                      << "kuangfeng" << "dawu" << "kuangbao" << "shenfen" << "wuqian"
                      << "wumou" << "wuhun" << "tongxin" << "xinsheng" << "zaoxian"
-                     << "renjie" << "baiyin";
+                     << "renjie" << "baiyin" << "qiliner" << "zhulu" ;
     }
 
     void getRandomSkill(ServerPlayer *player, bool need_trans = false) const{

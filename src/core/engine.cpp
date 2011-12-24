@@ -52,6 +52,7 @@ extern "C" {
     Package *NewAssassin();
     Package *NewTaichie();
     Package *NewGhost();
+	Package *NewEJCM();
 
     Package *NewStandardCard();
     Package *NewStandardExCard();
@@ -95,7 +96,7 @@ Engine::Engine()
 	addPackage(NewTest());
     addPackage(NewRed());
     addPackage(NewCyan());
-    //addPackage(NewGreen());
+    addPackage(NewGreen());
     addPackage(NewKuso());
     addPackage(NewTechnology());
     addPackage(NewThunder());
@@ -104,6 +105,7 @@ Engine::Engine()
     addPackage(NewAssassin());
     addPackage(NewTaichie());
     addPackage(NewGhost());
+	addPackage(NewEJCM());
 
     addPackage(NewStandardCard());
     addPackage(NewStandardExCard());
@@ -381,11 +383,11 @@ SkillCard *Engine::cloneSkillCard(const QString &name) const{
 }
 
 QString Engine::getVersion() const{
-    return "20111210";
+    return "20111223";
 }
 
 QString Engine::getVersionName() const{
-    return tr("Chibi");
+    return tr("Chibi-Quankuoban");
 }
 
 QStringList Engine::getExtensions() const{

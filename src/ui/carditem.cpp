@@ -82,15 +82,16 @@ void CardItem::goBack(bool kieru){
 
     QPropertyAnimation *goback = new QPropertyAnimation(this, "pos");
     goback->setEndValue(home_pos);
-    goback->setEasingCurve(QEasingCurve::OutBounce);
-    
+    goback->setEasingCurve(QEasingCurve::OutQuart);
+    goback->setDuration(700);
 
     if(kieru){
         QParallelAnimationGroup *group = new QParallelAnimationGroup;
 
         QPropertyAnimation *disappear = new QPropertyAnimation(this, "opacity");
-        disappear->setKeyValueAt(0.9, 1.0);
-
+        disappear->setStartValue(0.0);
+        disappear->setKeyValueAt(0.2, 1.0);
+        disappear->setKeyValueAt(0.8, 1.0);
         disappear->setEndValue(0.0);
 
         goback->setDuration(1000);
@@ -239,4 +240,24 @@ void CardItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     }
 }
 
+// 20111218 by Highlandz write desc on card
+void CardItem::writeCardDesc(QString strInfo)
+{
+     if(card){
+         int x,y;
+         x=(93-strInfo.toLocal8Bit().length()*6)/2;
+         y=115;
+         QPainter painter(&pixmap);
+         static QFont card_desc_font("SimSun", 9, QFont::Normal);
+         painter.setFont(card_desc_font);
+         painter.setPen(Qt::black);
 
+         painter.drawText(x, y-1, strInfo);
+         painter.drawText(x, y+1, strInfo);
+         painter.drawText(x-1, y, strInfo);
+         painter.drawText(x+1, y, strInfo);
+
+         painter.setPen(Qt::yellow);
+         painter.drawText(x, y, strInfo);
+     }
+}

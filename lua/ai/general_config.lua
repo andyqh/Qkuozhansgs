@@ -40,6 +40,23 @@ sgs.ai_use_value =
 		ShenfenCard = 8,
 		GreatYeyanCard = 8,
 		MediumYeyanCard = 5.6,
+		
+		baichuxCard = 9.1,
+		XiefangCard = 9.3,
+		tongmouxCard = 9.2,
+		xianhaixCard = 5,
+		TongluCard = 9.2,
+		GoulianCard = 7.3,
+		AmaterasuCard = 4,
+		SusaCard = 1.2,
+		ZhongshuCard = 5,
+		RujiCard = 4.7,
+		JunlingCard = 8,
+		YuanlvCard = 9.2,
+		Diezhi1Card = 3.1,
+		DuizhengCard = 8.5,
+		Jinguo1Card = 8,
+		QuanyiCard = 9,
 --normal cards
 		ExNihilo=10,
 
@@ -73,7 +90,10 @@ sgs.ai_use_value =
 		--special
 		Analeptic = 5.98,
 		Jink=8.9,
+		
 		Shit=-10,
+
+		Sacrifice = 3.5,
 }
 
 sgs.ai_use_priority = {
@@ -101,6 +121,23 @@ sgs.ai_use_priority = {
 		MediumYeyanCard = 6,
 		SmallYeyanCard = 2.3,
 		JilveCard = 0.4,
+		
+		baichuxCard = 2,
+		XiefangCard = 10,
+		tongmouxCard = 0.5,
+		xianhaixCard = 3,
+		TongluCard = 5.1,
+		GoulianCard = 7.2,
+		AmaterasuCard = 4,
+		SusaCard = 0.4,
+		ZhongshuCard = 3.8,
+		RujiCard = 6.7,
+		JunlingCard = 7.7,
+		YuanlvCard = 9.4,
+		Diezhi1Card = 5,
+		DuizhengCard = 8.5,
+		Jinguo1Card = 6.2,
+		QuanyiCard = 9.5,
 --
 
 
@@ -154,6 +191,7 @@ sgs.ai_use_priority = {
 
 		DefensiveHorse = 0,
 
+		ClearShirt = 0.5,
 
 		--god_salvation
 		--deluge
@@ -227,5 +265,44 @@ sgs.ai_chaofeng = {
 
 		shencaocao = -6,
 		shenguanyu = -6,
+		
+		sp_caiwenji = caiwenji,
+		sp_sunshangxiang = sunshangxiang,
+		sp_machao = machao,
+		sp_diaochan = diaochan,
+
+-- red
+		redzhonghui = 7,
+		redxunyou = 2,
+		redhejin = 3,
+		redguansuo = 7,
+		redyanbaihu = 1,
+		redwutugu = 4,
+		redchunyuqiong = 5,
+		redsunluban = 2,
+-- cyan
+		cyankongrong = 5,
+		cyancaochong = -2,
+		cyanliaohua = 3,
+		cyanyufan = 4,
+		cyanlidian = 3,
+		cyanwuanguo = 1,
+		cyanpuyuan = 2,
+		cyanfanqiangzhangda = -1,
+		cyanmateng = 2,
+-- green
+		greenyanpeng = 5,
+		greencaozhang = 3,
+		greenjushou = 7,
+		greenkanze = 6,
+		greenwanglang = -5,
+		greenchenwu = 5,
+		greenmayunlu = 4,
+		greenchenqun = 7,
+-- kuso
+		kusoking = 5,
+		tianyin = -4,
+		miheng = 3,
+		tensb = -3,
 }
 

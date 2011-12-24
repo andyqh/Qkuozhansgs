@@ -244,6 +244,7 @@ public:
 
     virtual const Card *viewAs(CardItem *card_item) const{
         Card *card = new GuicaiCard;
+        card->setSuit(card_item->getFilteredCard()->getSuit());
         card->addSubcard(card_item->getFilteredCard());
 
         return card;
@@ -1021,25 +1022,6 @@ public:
     }
 };
 
-class Chujia: public GameStartSkill{
-public:
-    Chujia():GameStartSkill("chujia"){
-        frequency = Limited;
-    }
-
-    virtual bool triggerable(const ServerPlayer *target) const{
-        return GameStartSkill::triggerable(target) && target->getGeneralName() == "sunshangxiang";
-    }
-
-    virtual void onGameStart(ServerPlayer *player) const{
-        if(player->askForSkillInvoke(objectName())){
-            Room *room = player->getRoom();
-            room->transfigure(player, "sp_sunshangxiang", true, false);
-            room->setPlayerProperty(player, "kingdom", "shu");
-        }
-    }
-};
-
 class Jieyin: public ViewAsSkill{
 public:
     Jieyin():ViewAsSkill("jieyin"){
@@ -1269,6 +1251,7 @@ void StandardPackage::addGenerals(){
     simayi = new General(this, "simayi", "wei", 3);
     simayi->addSkill(new Fankui);
     simayi->addSkill(new Guicai);
+    simayi->addSkill(new SPConvertSkill("zhulu", "simayi", "sp_simayi"));
 
     xiahoudun = new General(this, "xiahoudun", "wei");
     xiahoudun->addSkill(new Ganglie);
@@ -1347,7 +1330,7 @@ void StandardPackage::addGenerals(){
     luxun->addSkill(new Lianying);
 
     sunshangxiang = new General(this, "sunshangxiang", "wu", 3, false);
-    sunshangxiang->addSkill(new Chujia);
+    sunshangxiang->addSkill(new SPConvertSkill("chujia", "sunshangxiang", "sp_sunshangxiang"));
     sunshangxiang->addSkill(new Jieyin);
     sunshangxiang->addSkill(new Xiaoji);
 

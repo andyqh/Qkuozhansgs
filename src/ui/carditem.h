@@ -14,6 +14,9 @@ class CardItem : public Pixmap
     Q_OBJECT
 
 public:
+
+    void writeCardDesc(QString strInfo); // 20111218 by highlandz
+
     CardItem(const Card *card);
     CardItem(const QString &general_name);
 

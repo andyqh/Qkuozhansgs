@@ -154,6 +154,7 @@ enum TriggerEvent{
     Pindian,
     AskForChangeCard,
     PindianFinish,
+	TurnOvered,
 
     Predamage,
     Predamaged,

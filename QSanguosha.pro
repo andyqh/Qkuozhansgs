@@ -41,6 +41,7 @@ SOURCES += src/main.cpp \
 	src/package/god.cpp \
 	src/package/joypackage.cpp \
 	src/package/maneuvering.cpp \
+        src/package/artofwarpackage.cpp \
 	src/package/mountainpackage.cpp \
 	src/package/nostalgia.cpp \
 	src/package/sp-package.cpp \
@@ -58,12 +59,12 @@ SOURCES += src/main.cpp \
 	src/package/shineway/red.cpp \
 	src/package/shineway/cyan.cpp \
 	src/package/shineway/green.cpp \
-        src/package/gongzi/thunderpackage.cpp \
-        src/package/gongzi/shadowpackage.cpp \
-        src/package/gongzi/huangjinpackage.cpp \
-        src/package/gongzi/artofwarpackage.cpp \
-        src/package/roxiel/assassinpackage.cpp \
-        src/package/ruo/ghost.cpp \
+        src/package/thunderpackage.cpp \
+        src/package/shadowpackage.cpp \
+        src/package/huangjinpackage.cpp \
+        src/package/assassinpackage.cpp \
+        src/package/ghost.cpp \
+	src/package/ejcm-package.cpp \
 	src/scenario/boss-mode-scenario.cpp \
 	src/scenario/challengemode.cpp \
 	src/scenario/couple-scenario.cpp \
@@ -130,6 +131,7 @@ HEADERS += src/client/aux-skills.h \
 	src/package/god.h \
 	src/package/joypackage.h \
 	src/package/maneuvering.h \
+        src/package/artofwarpackage.h \
 	src/package/mountainpackage.h \
 	src/package/nostalgia.h \
 	src/package/package.h \
@@ -147,12 +149,12 @@ HEADERS += src/client/aux-skills.h \
 	src/package/shineway/red.h \ 
 	src/package/shineway/cyan.h \ 
 	src/package/shineway/green.h \
-        src/package/gongzi/thunderpackage.h \
-        src/package/gongzi/shadowpackage.h \
-        src/package/gongzi/huangjinpackage.h \
-        src/package/gongzi/artofwarpackage.h \
-        src/package/roxiel/assassinpackage.h \
-        src/package/ruo/ghost.h \
+        src/package/thunderpackage.h \
+        src/package/shadowpackage.h \
+        src/package/huangjinpackage.h \
+        src/package/assassinpackage.h \
+        src/package/ghost.h \
+	src/package/ejcm-package.h \
 	src/scenario/boss-mode-scenario.h \
 	src/scenario/challengemode.h \
 	src/scenario/couple-scenario.h \

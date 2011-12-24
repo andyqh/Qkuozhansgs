@@ -12,6 +12,9 @@ sgs.dynamic_value = {
 		LijianCard = true,
 		LuanwuCard = true,
 		ShenfenCard = true,
+		
+		TongluCard = true,
+		AmaterasuCard = true,
 	},
 	control_usecard = 
 	{
@@ -33,6 +36,13 @@ sgs.dynamic_value = {
 		GanluCard = true,
 		QuhuCard = true,
 		ShenfenCard = true,
+		
+		tongmouxCard = true,
+		xianhaixCard = true,
+		baichuxCard = true,
+		XiefangCard = true,
+		GoulianCard = true,
+		SusaCard = true,
 	},
 	lucky_chance = 
 	{
@@ -44,12 +54,16 @@ sgs.dynamic_value = {
 		Analeptic = true,
 		IronChain = true,
 		Exnihilo = true,
+		GodSalvation = true,
 		
 		RendeCard = true,
 		JieyinCard = true,
 		QingnangCard = true,
 		JujianCard = true,
 		ZhihengCard = true,
+		
+		tongmouxCard = true,
+		GoulianCard = true,
 	},
 }
 
@@ -222,3 +236,7 @@ spade = 3.9,
 club = 3.9
 }
 
+sgs.yuji_suit_value =
+{
+heart = 5
+}

@@ -26,7 +26,7 @@ void IndicatorItem::doAnimation(){
     QPropertyAnimation *animation = new QPropertyAnimation(this, "finish");
     animation->setEndValue(real_finish);
     animation->setEasingCurve(QEasingCurve::OutCubic);
-    animation->setDuration(500);
+    animation->setDuration(800);
 
     QPropertyAnimation *pause = new QPropertyAnimation(this,"opacity");
     pause->setEndValue(0);

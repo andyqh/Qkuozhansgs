@@ -132,7 +132,7 @@ public:
     }
 
     virtual bool isEnabledAtPlay(const Player *player) const{
-        return player->getMark("liaot") >= 1;
+        return player->getMark("@liaot") >= 1;
     }
 
     virtual bool viewFilter(const QList<CardItem *> &selected, const CardItem *to_select) const{
@@ -158,7 +158,7 @@ LiaotingCard::LiaotingCard(){
 
 void LiaotingCard::use(Room *room, ServerPlayer *source, const QList<ServerPlayer *> &) const{
     QList<int> subs = this->getSubcards();
-    source->loseMark("liaot");
+    source->loseMark("@liaot");
     foreach(int tmp, subs){
         if(!Sanguosha->getCard(tmp)->inherits("Shit")){
             room->throwCard(this);
@@ -247,6 +247,47 @@ public:
     }
 };
 
+class EatDeath: public TriggerSkill{
+public:
+    EatDeath():TriggerSkill("eatdeath"){
+        events << Death;
+    }
+
+    virtual bool triggerable(const ServerPlayer *target) const{
+        return true;
+    }
+
+    virtual bool trigger(TriggerEvent , ServerPlayer *player, QVariant &data) const{
+        Room *room = player->getRoom();
+        ServerPlayer *tenkei = room->findPlayerBySkillName(objectName());
+        if(!tenkei)
+            return false;
+        QVariantList eatdeath_skills = tenkei->tag["EatDeath"].toList();
+        if(room->askForSkillInvoke(tenkei, objectName(), data)){
+            QStringList eatdeaths;
+            foreach(QVariant tmp, eatdeath_skills)
+                eatdeaths << tmp.toString();
+            if(!eatdeaths.isEmpty()){
+                QString choice = room->askForChoice(tenkei, objectName(), eatdeaths.join("+"));
+                room->detachSkillFromPlayer(tenkei, choice);
+                eatdeath_skills.removeOne(choice);
+            }
+            room->loseMaxHp(tenkei);
+            QList<const Skill *> skills = player->getVisibleSkillList();
+            foreach(const Skill *skill, skills){
+                if(skill->parent()){
+                    QString sk = skill->objectName();
+                    room->acquireSkill(tenkei, sk);
+                    eatdeath_skills << sk;
+                }
+            }
+            tenkei->tag["EatDeath"] = eatdeath_skills;
+        }
+
+        return false;
+    }
+};
+
 class SuperJuejing: public TriggerSkill{
 public:
     SuperJuejing():TriggerSkill("super_juejing"){
@@ -331,12 +372,15 @@ KusoPackage::KusoPackage()
     kusoking->addSkill(new HuaxuEffect);
     related_skills.insertMulti("huaxu", "#huaxu_eft");
     kusoking->addSkill(new Liaoting);
-    kusoking->addSkill(new MarkAssignSkill("liaot", 1));
-    related_skills.insertMulti("liaoting", "#liaot");
+    kusoking->addSkill(new MarkAssignSkill("@liaot", 1));
+    related_skills.insertMulti("liaoting", "#@liaot-1");
 
     General *tianyin = new General(this, "tianyin", "god", 3);
     tianyin->addSkill(new Skydao);
     tianyin->addSkill(new Noqing);
+
+    General *tenkei = new General(this, "tenkei", "god", 5, false);
+    tenkei->addSkill(new EatDeath);
 
     General *shenzilong = new General(this, "shenzilong", "god", 1, true, true);
     shenzilong->addSkill(new SuperJuejing);
@@ -579,7 +623,8 @@ public:
         if(player->getPhase() != Player::Start)
             return false;
         Room *room = player->getRoom();
-        int x = player->getMaxCards() - player->getHandcardNum();
+        int max = qMax(player->getMaxCards(), player->getMaxHP());
+        int x = max - player->getHandcardNum();
         LogMessage log;
         log.from = player;
         log.arg = objectName();

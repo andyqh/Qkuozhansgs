@@ -493,6 +493,8 @@ void ServerPlayer::turnOver(){
     log.from = this;
     log.arg = faceUp() ? "face_up" : "face_down";
     room->sendLog(log);
+
+    room->getThread()->trigger(TurnOvered, this);
 }
 
 void ServerPlayer::play(){
@@ -683,6 +685,9 @@ void ServerPlayer::introduceTo(ServerPlayer *player){
         player->invoke("addPlayer", introduce_str);
     else
         room->broadcastInvoke("addPlayer", introduce_str, this);
+
+    if(isReady())
+        room->broadcastProperty(this, "ready");
 }
 
 void ServerPlayer::marshal(ServerPlayer *player) const{

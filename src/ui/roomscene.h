@@ -130,6 +130,26 @@ public:
 
     static void FillPlayerNames(QComboBox *combobox, bool add_none);
 
+    // 20111218 by Highlandz
+    // some vars for custom scene
+    bool autoShowDiscards;
+    void autoUpdateDiscards();
+    int discarded_queue_size;
+    int discarded_area_y_offset;
+    int discarded_area_middle;
+    int discarded_area_width;
+    int discarded_area_cards;
+    int PhotoPos1_x_offset,PhotoPos1_y_offset;
+    int PhotoPos2_x_offset,PhotoPos2_y_offset;
+    int PhotoPos3_x_offset,PhotoPos3_y_offset;
+    int PhotoPos4_x_offset,PhotoPos4_y_offset;
+    int PhotoPos5_x_offset,PhotoPos5_y_offset;
+    int StateItem_x_offset,StateItem_y_offset;
+    int ChatBox_x_offset,ChatBox_y_offset,ChatBox_width_offset,ChatBox_height_offset;
+    int LogBox_x_offset,LogBox_y_offset,LogBox_width_offset,LogBox_height_offset;
+    int DiscardedPos_x_offset,DiscardedPos_y_offset;
+    int DrawPilePos_x_offset,DrawPilePos_y_offset;
+
 public slots:
     void addPlayer(ClientPlayer *player);
     void removePlayer(const QString &player_name);
@@ -221,6 +241,7 @@ private:
 
     CardItem *takeCardItem(ClientPlayer *src, Player::Place src_place, int card_id);
     void putCardItem(const ClientPlayer *dest, Player::Place dest_place, CardItem *card_item);
+    void putCardItem(QString name, const ClientPlayer *dest, Player::Place dest_place, CardItem *card_item); //20111218 by Highlandz
     void useCard(const Card *card);
     void fillTable(QTableWidget *table, const QList<const ClientPlayer *> &players);
     void chooseSkillButton();

@@ -140,16 +140,20 @@ void CardUseStruct::parse(const QString &str, Room *room){
 }
 
 DrawStruct::DrawStruct()
-    :draw(2), git(NULL)
-{
-
+    :draw(2), git(NULL){
 }
 
 SkillInvokeStruct::SkillInvokeStruct()
-    :skillname(""), invoked(false)
-{
-
+    :skillname(""), invoked(false){
 }
+
+QString EventTriplet::toString() const{
+    return QString("event = %1, target = %2[%3], data = %4[%5]")
+            .arg(event)
+            .arg(target->objectName()).arg(target->getGeneralName())
+            .arg(data->toString()).arg(data->typeName());
+}
+
 RoomThread::RoomThread(Room *room)
     :QThread(room), room(room)
 {
@@ -336,6 +340,10 @@ static bool CompareByPriority(const TriggerSkill *a, const TriggerSkill *b){
 bool RoomThread::trigger(TriggerEvent event, ServerPlayer *target, QVariant &data){
     Q_ASSERT(QThread::currentThread() == this);
 
+    // push it to event stack
+    EventTriplet triplet(event, target, &data);
+    event_stack.push_back(triplet);
+
     bool broken = false;
     foreach(const TriggerSkill *skill, skill_table[event]){
         if(skill->triggerable(target)){
@@ -350,7 +358,14 @@ bool RoomThread::trigger(TriggerEvent event, ServerPlayer *target, QVariant &dat
             ai->filterEvent(event, target, data);
     }
 
+    // pop event stack
+    event_stack.pop_back();
+
     return broken;
+}
+
+const QList<EventTriplet> *RoomThread::getEventStack() const{
+    return &event_stack;
 }
 
 bool RoomThread::trigger(TriggerEvent event, ServerPlayer *target){

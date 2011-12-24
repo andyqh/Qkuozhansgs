@@ -63,7 +63,33 @@ public:
 };
 */
 
+class TongmouxCard: public SkillCard{
+    Q_OBJECT
 
+public:
+    Q_INVOKABLE TongmouxCard();
+
+    virtual void use(Room *room, ServerPlayer *source, const QList<ServerPlayer *> &targets) const;
+};
+
+class XianhaixCard: public SkillCard{
+    Q_OBJECT
+
+public:
+    Q_INVOKABLE XianhaixCard();
+
+    virtual bool targetFilter(const QList<const Player *> &targets, const Player *to_select, const Player *Self) const;
+    virtual void onEffect(const CardEffectStruct &effect) const;
+};
+
+class BaichuxCard: public SkillCard{
+    Q_OBJECT
+
+public:
+    Q_INVOKABLE BaichuxCard();
+
+    virtual void use(Room *room, ServerPlayer *source, const QList<ServerPlayer *> &targets) const;
+};
 
 class TongluCard: public SkillCard{
     Q_OBJECT

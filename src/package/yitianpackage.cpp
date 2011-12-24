@@ -283,7 +283,7 @@ public:
     }
 
     virtual bool isEnabledAtPlay(const Player *player) const{
-        return ! player->hasUsed("JuejiCard");
+        return false;
     }
 
     virtual bool viewFilter(const CardItem *to_select) const{
@@ -958,6 +958,19 @@ public:
     Shenjun():TriggerSkill("shenjun"){
         events << GameStart << PhaseChange << Predamaged;
         frequency = Compulsory;
+    }
+
+    virtual QString getDefaultChoice(ServerPlayer *player) const{
+        int males = 0;
+        foreach(ServerPlayer *player, player->getRoom()->getAlivePlayers()){
+            if(player->getGender() == General::Male)
+                males ++;
+        }
+
+        if(males > (player->aliveCount() - males))
+            return "female";
+        else
+            return "male";
     }
 
     virtual bool trigger(TriggerEvent event, ServerPlayer *player, QVariant &data) const{
